@@ -17,7 +17,7 @@ public class Rectangle extends Shape {
     }
 
     @Override
-    Double calcArea() {
+    public Double calcArea() {
         double a = Math.abs(x1 - x2);
         double b = Math.abs(y1 - y2);
 

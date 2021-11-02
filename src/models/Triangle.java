@@ -3,7 +3,7 @@ package models;
 public class Triangle extends Shape {
     private Integer x1, y1, x2, y2, x3, y3;
 
-    protected Triangle(String color, Integer x1, Integer y1, Integer x2, Integer y2, Integer x3, Integer y3) {
+    public Triangle(String color, Integer x1, Integer y1, Integer x2, Integer y2, Integer x3, Integer y3) {
         super(color);
         this.x1 = x1;
         this.y1 = y1;
@@ -20,7 +20,7 @@ public class Triangle extends Shape {
     }
 
     @Override
-    Double calcArea() {
+    public Double calcArea() {
         return (double)(1 / 2 * Math.abs((x2 - x1) * (y3 - y1) - (x3 - x1) * (y2 - y1)));
     }
 

@@ -17,7 +17,7 @@ public abstract class Shape implements Drawable {
         this.shapeColor = shapeColor;
     }
 
-    abstract Double calcArea();
+    public abstract Double calcArea();
 
     @Override
     public String toString() {

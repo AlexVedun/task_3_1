@@ -4,7 +4,7 @@ public class Circle extends Shape {
     private Integer x, y;
     private Double r;
 
-    protected Circle(String color, Integer x, Integer y, Double r) {
+    public Circle(String color, Integer x, Integer y, Double r) {
         super(color);
         this.x = x;
         this.y = y;
@@ -17,7 +17,7 @@ public class Circle extends Shape {
     }
 
     @Override
-    Double calcArea() {
+    public Double calcArea() {
         return Math.PI * r * r;
     }
 
