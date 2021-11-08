@@ -5,7 +5,9 @@ import classes.Shape;
 public class ShapeView {
     public void showModels(Shape[] shapes) {
         for (Shape shape : shapes) {
-            System.out.println(shape.toString());
+            if (shape != null) {
+                System.out.println(shape);
+            }
         }
     }
 

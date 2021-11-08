@@ -12,7 +12,7 @@ public class ShapeController {
     private ShapeView view;
     private ShapeModel model;
 
-    ShapeController(ShapeModel model, ShapeView view) {
+    public ShapeController(ShapeModel model, ShapeView view) {
         this.view = view;
         this.model = model;
     }
@@ -61,7 +61,7 @@ public class ShapeController {
         view.showResult("Total area for shapes:", totalArea);
     }
 
-    public void totalArea(Class<?> shapeClass) {
+    public void getTotalArea(Class<?> shapeClass) {
         double totalArea = 0;
 
         for (Shape item : model.getShapes()) {
@@ -96,6 +96,10 @@ public class ShapeController {
             }
         });
 
+        view.showModels(model.getShapes());
+    }
+
+    public void showModels() {
         view.showModels(model.getShapes());
     }
 }

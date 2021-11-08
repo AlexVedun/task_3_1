@@ -4,11 +4,11 @@ import classes.Helper;
 import classes.Shape;
 
 public class ShapeModel {
-    private static final int SHAPES_COUNT = 15;
+    private static final int SHAPES_COUNT = 10;
     private final String[] colors = {"black", "red", "blue", "yellow", "cyan", "white"};
     private Shape[] shapes;
 
-    ShapeModel() {
+    public ShapeModel() {
         shapes = new Shape[SHAPES_COUNT];
     }
 
