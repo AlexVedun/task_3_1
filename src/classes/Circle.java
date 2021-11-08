@@ -1,4 +1,4 @@
-package models;
+package classes;
 
 public class Circle extends Shape {
     private Integer x, y;

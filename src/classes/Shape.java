@@ -1,4 +1,4 @@
-package models;
+package classes;
 
 import interfaces.Drawable;
 

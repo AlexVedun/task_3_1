@@ -1,4 +1,4 @@
-package models;
+package classes;
 
 public class Triangle extends Shape {
     private Integer x1, y1, x2, y2, x3, y3;

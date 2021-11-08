@@ -1,9 +1,7 @@
 package controllers;
 
-import models.Circle;
-import models.Rectangle;
-import models.Shape;
-import models.Triangle;
+import classes.*;
+import models.ShapeModel;
 import views.ShapeView;
 
 import java.util.Arrays;
@@ -11,50 +9,52 @@ import java.util.Comparator;
 import java.util.List;
 
 public class ShapeController {
-    private static final int SHAPES_COUNT = 15;
-    private final String[] colors = {"black", "red", "blue", "yellow", "cyan", "white"};
-    private Shape[] shapes;
     private ShapeView view;
+    private ShapeModel model;
 
-    ShapeController(ShapeView view) {
-        shapes = new Shape[SHAPES_COUNT];
+    ShapeController(ShapeModel model, ShapeView view) {
         this.view = view;
+        this.model = model;
     }
 
     public void generateShapes() {
-        for (int i = 0; i < SHAPES_COUNT; i++) {
-            switch (getRandomInt(1, 3)) {
-                case 1 -> shapes[i] = new Rectangle(
-                        getRandomColor(),
-                        getRandomInt(0, 5),
-                        getRandomInt(0, 5),
-                        getRandomInt(6, 10),
-                        getRandomInt(6, 10)
+        Shape shape;
+
+        for (int i = 0; i < model.getShapesCount(); i++) {
+            switch (Helper.getRandomInt(1, 3)) {
+                case 1 -> shape = new Rectangle(
+                        model.getRandomColor(),
+                        Helper.getRandomInt(0, 5),
+                        Helper.getRandomInt(0, 5),
+                        Helper.getRandomInt(6, 10),
+                        Helper.getRandomInt(6, 10)
                 );
-                case 2 -> shapes[i] = new Triangle(
-                        getRandomColor(),
-                        getRandomInt(0, 10),
-                        getRandomInt(0, 10),
-                        getRandomInt(0, 10),
-                        getRandomInt(0, 10),
-                        getRandomInt(0, 10),
-                        getRandomInt(0, 10)
+                case 2 -> shape = new Triangle(
+                        model.getRandomColor(),
+                        Helper.getRandomInt(0, 10),
+                        Helper.getRandomInt(0, 10),
+                        Helper.getRandomInt(0, 10),
+                        Helper.getRandomInt(0, 10),
+                        Helper.getRandomInt(0, 10),
+                        Helper.getRandomInt(0, 10)
                 );
-                case 3 -> shapes[i] = new Circle(
-                        getRandomColor(),
-                        getRandomInt(0, 10),
-                        getRandomInt(0, 10),
-                        (double) getRandomInt(0, 10)
+                default -> shape = new Circle(
+                        model.getRandomColor(),
+                        Helper.getRandomInt(0, 10),
+                        Helper.getRandomInt(0, 10),
+                        (double) Helper.getRandomInt(0, 10)
                 );
             }
+            model.setShape(i, shape);
         }
-        view.showModels(shapes);
+
+        view.showModels(model.getShapes());
     }
 
     public void getTotalArea() {
         double totalArea = 0;
 
-        for (Shape item : shapes) {
+        for (Shape item : model.getShapes()) {
             totalArea += item.calcArea();
         }
 
@@ -64,7 +64,7 @@ public class ShapeController {
     public void totalArea(Class<?> shapeClass) {
         double totalArea = 0;
 
-        for (Shape item : shapes) {
+        for (Shape item : model.getShapes()) {
             if (item.getClass() == shapeClass ) {
                 totalArea += item.calcArea();
             }
@@ -74,38 +74,28 @@ public class ShapeController {
     }
 
     public void sortByArea() {
-        Arrays.sort(shapes, new Comparator<Shape>() {
+        Arrays.sort(model.getShapes(), new Comparator<Shape>() {
             @Override
             public int compare(Shape o1, Shape o2) {
                 return Double.compare(o1.calcArea(), o2.calcArea());
             }
         });
-        view.showModels(shapes);
+
+        view.showModels(model.getShapes());
     }
 
     public void sortByColor() {
-        Arrays.sort(shapes, new Comparator<Shape>() {
+        Arrays.sort(model.getShapes(), new Comparator<Shape>() {
             @Override
             public int compare(Shape o1, Shape o2) {
-                List<String> colorList = Arrays.asList(colors);
+                List<String> colorList = Arrays.asList(model.getColors());
                 int index1 = colorList.indexOf(o1.getShapeColor());
                 int index2 = colorList.indexOf(o2.getShapeColor());
 
                 return Integer.compare(index1, index2);
             }
         });
-        view.showModels(shapes);
-    }
 
-    private int getRandomInt(int a, int b) {
-        return (a + (int) (Math.random() * b));
-    }
-
-    private String getRandomColor() {
-        return colors[getRandomInt(0, colors.length - 1)];
-    }
-
-    public Shape[] getShapes() {
-        return shapes;
+        view.showModels(model.getShapes());
     }
 }

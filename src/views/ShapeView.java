@@ -1,6 +1,6 @@
 package views;
 
-import models.Shape;
+import classes.Shape;
 
 public class ShapeView {
     public void showModels(Shape[] shapes) {
