@@ -4,6 +4,7 @@ import models.Circle;
 import models.Rectangle;
 import models.Shape;
 import models.Triangle;
+import views.ShapeView;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -13,9 +14,11 @@ public class ShapeController {
     private static final int SHAPES_COUNT = 15;
     private final String[] colors = {"black", "red", "blue", "yellow", "cyan", "white"};
     private Shape[] shapes;
+    private ShapeView view;
 
-    ShapeController() {
+    ShapeController(ShapeView view) {
         shapes = new Shape[SHAPES_COUNT];
+        this.view = view;
     }
 
     public void generateShapes() {
@@ -45,19 +48,20 @@ public class ShapeController {
                 );
             }
         }
+        view.showModels(shapes);
     }
 
-    public double getTotalArea() {
+    public void getTotalArea() {
         double totalArea = 0;
 
         for (Shape item : shapes) {
             totalArea += item.calcArea();
         }
 
-        return totalArea;
+        view.showResult("Total area for shapes:", totalArea);
     }
 
-    public double getTotalArea(Class<?> shapeClass) {
+    public void totalArea(Class<?> shapeClass) {
         double totalArea = 0;
 
         for (Shape item : shapes) {
@@ -66,7 +70,7 @@ public class ShapeController {
             }
         }
 
-        return totalArea;
+        view.showResult("Total area for shapes of class " + shapeClass.getName() + ":", totalArea);
     }
 
     public void sortByArea() {
@@ -76,6 +80,7 @@ public class ShapeController {
                 return Double.compare(o1.calcArea(), o2.calcArea());
             }
         });
+        view.showModels(shapes);
     }
 
     public void sortByColor() {
@@ -89,6 +94,7 @@ public class ShapeController {
                 return Integer.compare(index1, index2);
             }
         });
+        view.showModels(shapes);
     }
 
     private int getRandomInt(int a, int b) {
