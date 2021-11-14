@@ -21,7 +21,7 @@ public class Triangle extends Shape {
 
     @Override
     public Double calcArea() {
-        return (double)(1 / 2 * Math.abs((x2 - x1) * (y3 - y1) - (x3 - x1) * (y2 - y1)));
+        return 1.0 / 2 * (double)Math.abs((x2 - x1) * (y3 - y1) - (x3 - x1) * (y2 - y1));
     }
 
     @Override

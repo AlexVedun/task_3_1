@@ -42,7 +42,7 @@ public class ShapeController {
                         model.getRandomColor(),
                         Helper.getRandomInt(0, 10),
                         Helper.getRandomInt(0, 10),
-                        (double) Helper.getRandomInt(0, 10)
+                        (double) Helper.getRandomInt(1, 10)
                 );
             }
             model.setShape(i, shape);
